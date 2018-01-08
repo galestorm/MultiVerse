@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { PanResponder, Text, View, Dimensions, Animated } from 'react-native'
 import PropTypes from 'prop-types'
 
-//import isEqual from 'lodash.isequal'
+import isEqual from 'lodash.isequal'
 
 import styles from './styles'
 
@@ -23,7 +23,7 @@ class Swiper extends Component {
       ...this.calculateCardIndexes(props.cardIndex, props.cards),
       pan: new Animated.ValueXY(),
       scale: new Animated.Value(props.secondCardZoom),
-      cards: [{title: 'Explore poems'}],
+      cards: props.cards,
       previousCardX: new Animated.Value(props.previousCardInitialPositionX),
       previousCardY: new Animated.Value(props.previousCardInitialPositionY),
       swipedAllCards: false,
@@ -34,9 +34,9 @@ class Swiper extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-    // if (isEqual(newProps, this.props)) {
-    //   return
-    // }
+    if (isEqual(newProps, this.props)) {
+      return
+    }
 
     this.setState({
       ...this.calculateCardIndexes(newProps.cardIndex, newProps.cards),
