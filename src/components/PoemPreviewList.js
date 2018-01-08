@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 import axios from 'axios';
 import PoemPreview from './PoemPreview';
 
@@ -34,9 +34,9 @@ class PoemPreviewList extends Component {
 
   render() {
     return (
-      <View>
+      <ScrollView>
         {this.renderPoems()}
-      </View>
+      </ScrollView>
     );
   }
 }
